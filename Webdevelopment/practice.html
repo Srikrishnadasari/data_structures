@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll bar</title>
+    <style>
+      body,{
+       
+  
+      }
+        .left{
+            display: inline-block;
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            /* border: 2px solid brown; */
+        }
+        .mid{
+            /* background-color: aqua; */
+            display: inline-block;
+            position: absolute;
+            right: 20%; 
+             left: 20%; 
+            top: 20px;
+             /* width: 40%; */
+            border: 2px solid brown;
+        }
+        .right{
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+            top: 20px;
+          /* border: 2px solid brown; */
+        }
+      .left img{
+        width: 70px ;
+      }
+      .navbar li{
+        display: inline-block;
+        text-decoration: none;
+        font-size:20px ;
+      }
+      .navbar li a{
+        text-decoration: none;
+        color: rgb(241, 241, 145);
+        /* padding: 34px 23px; */
+        /* padding-top: 500px; */
+        padding-left: 70px ;
+        
+        /* padding-bottom:200px; */
+        /* padding-top:200px; */
+       
+      }
+     .navbar li a:hover{
+        text-decoration: underline;
+        color: blueviolet;
+     }
+     .btn{
+        margin: 0px;
+        color: white;
+        border: 4px SOLID rgb(117, 238, 244);
+        border-radius: 20px;
+        background-color: black;
+        cursor:pointer;
+        font-size: 20px;
+     }
+     .btn:hover{
+        background-color: brown;
+     }
+    </style>
+</head>
+<body background-img="gym background.jpeg" background-repeat="no-repeat" background-size="cover">
+    <div class="left">
+        <img src="lion logo.jpeg" alt=""> 
+        <div>sri krishna</div>
+    </div>
+    <div class="mid">
+        <ul class="navbar">
+            <li><a href="#"> Home </a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">contact us </a></li>
+            <li><a href="#">Help</a></li>
+            <!-- <li><a href=""></a></li> -->
+
+        </ul> 
+    </div>
+    <div class="right">
+    <button class="btn">login</button>
+    <button class="btn">mail us</button></div>
+</body>
+</html>
