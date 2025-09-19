@@ -1,0 +1,10 @@
+/* Accent polish beyond DaisyUI defaults */
+.card-gradient {
+  background: linear-gradient(135deg, hsl(var(--p)) 0%, hsl(var(--s)) 100%);
+}
+.stat-ring {
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+.kbd.kbd-xs {
+  padding: .1rem .35rem;
+}
