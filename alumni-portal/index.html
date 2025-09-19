@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alumni Connect – Engagement Platform</title>
+  <meta name="description" content="Centralized Digital Alumni Engagement Platform" />
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f393.svg" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { daisyui: { themes: ['light', 'dark', 'corporate', 'forest'] } };</script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="./styles.css" />
+  <style>html,body{height:100%}</style>
+</head>
+
+<body class="min-h-screen bg-base-100">
+  <div class="drawer lg:drawer-open">
+    <input id="app-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content flex flex-col">
+      <div class="navbar bg-base-100 border-b border-base-200 sticky top-0 z-30">
+        <div class="flex-none lg:hidden">
+          <label for="app-drawer" class="btn btn-ghost btn-square">
+            <i data-feather="menu"></i>
+          </label>
+        </div>
+        <div class="flex-1">
+          <a href="#/overview" class="btn btn-ghost normal-case text-xl font-extrabold tracking-wide">
+            <span class="text-primary">Alumni</span> Connect
+          </a>
+        </div>
+        <div class="flex-1 max-w-xl">
+          <label class="input input-bordered flex items-center gap-2 w-full">
+            <i data-feather="search" class="opacity-70"></i>
+            <input id="global-search" type="text" class="grow" placeholder="Search alumni, events, internships..." />
+          </label>
+        </div>
+        <div class="flex-none gap-2 ml-2">
+          <button id="theme-toggle" class="btn btn-ghost btn-square tooltip tooltip-bottom" data-tip="Toggle theme">
+            <i data-feather="moon"></i>
+          </button>
+          <button id="notifications-btn" class="btn btn-ghost btn-square tooltip tooltip-bottom" data-tip="Notifications">
+            <div class="indicator">
+              <i data-feather="bell"></i>
+              <span id="notif-dot" class="badge badge-xs badge-primary indicator-item hidden"></span>
+            </div>
+          </button>
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar placeholder">
+              <div class="bg-neutral text-neutral-content rounded-full w-10">
+                <span class="text-lg">AC</span>
+              </div>
+            </div>
+            <ul class="menu dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <li><a href="#/alumni">My Dashboard</a></li>
+              <li><a href="#/settings">Settings</a></li>
+              <li><a id="clear-storage" class="text-error">Reset Demo Data</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <main id="content" class="p-4 md:p-6 lg:p-8"></main>
+
+      <footer class="footer items-center p-4 bg-base-100 border-t border-base-200">
+        <aside class="items-center grid-flow-col">
+          <i data-feather="cpu" class="text-primary"></i>
+          <p class="font-medium">Smart India Hackathon – Alumni Engagement Platform</p>
+        </aside>
+        <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+          <a href="#/about" class="link link-hover">About</a>
+          <a href="#/privacy" class="link link-hover">Privacy</a>
+          <a href="#/help" class="link link-hover">Help</a>
+        </nav>
+      </footer>
+    </div>
+
+    <div class="drawer-side">
+      <label for="app-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+      <aside class="menu p-4 w-80 min-h-full bg-base-200">
+        <div class="mb-4">
+          <div class="stat bg-base-100 shadow rounded-box">
+            <div class="stat-title">Active Users</div>
+            <div class="stat-value text-primary" id="active-users">0</div>
+            <div class="stat-desc">last 24h</div>
+          </div>
+        </div>
+        <ul class="menu">
+          <li class="menu-title">Navigate</li>
+          <li><a href="#/overview"><i data-feather="grid"></i>Overview</a></li>
+          <li><a href="#/alumni"><i data-feather="award"></i>Alumni</a></li>
+          <li><a href="#/students"><i data-feather="users"></i>Students</a></li>
+          <li><a href="#/faculty"><i data-feather="calendar"></i>Faculty</a></li>
+          <li><a href="#/admin"><i data-feather="database"></i>Admin</a></li>
+          <li class="menu-title mt-4">Insights</li>
+          <li><a href="#/analytics"><i data-feather="bar-chart-2"></i>Analytics</a></li>
+          <li><a href="#/leaderboard"><i data-feather="trending-up"></i>Leaderboards</a></li>
+          <li class="menu-title mt-4">Extras</li>
+          <li><a href="#/messages"><i data-feather="message-square"></i>Messages</a></li>
+          <li><a href="#/settings"><i data-feather="sliders"></i>Settings</a></li>
+        </ul>
+        <div class="mt-6">
+          <button id="cta-mentorship" class="btn btn-primary w-full">Find a Mentor</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <dialog id="modal-messages" class="modal">
+    <div class="modal-box max-w-4xl">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </form>
+      <h3 class="font-bold text-lg">Messages</h3>
+      <div id="messages-body" class="mt-4 space-y-3"></div>
+      <div class="mt-4 flex gap-2">
+        <input id="message-input" class="input input-bordered w-full" placeholder="Write a message to a mentor/student..." />
+        <button id="message-send" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button>close</button></form>
+  </dialog>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
